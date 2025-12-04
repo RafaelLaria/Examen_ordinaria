@@ -20,7 +20,7 @@ class AnalizadorSismico:
                     continue
 
         self.datos = np.array(self.datos)
-        return self.datos
+        print(self.datos)
     
     def analizar_riesgo(self):
         media = np.mean(self.datos)
@@ -28,11 +28,11 @@ class AnalizadorSismico:
         maximo = np.max(self.datos)
         print(maximo)
         if maximo > 7.0:
-            print('ALERTA ROJA')
+            return 'ALERTA ROJA'
         elif 4.0 < maximo < 7.0:
-            print('ALERTA AMARILLA')
+            return 'ALERTA AMARILLA'
         else:
-            print('NORMAL')
+            return 'NORMAL'
     
     def generar_grafico(self):
         plt.plot(self.datos)
@@ -40,6 +40,7 @@ class AnalizadorSismico:
 
 
 sensor1 = AnalizadorSismico('BuscaNegros')
+print(sensor1)
 sensor1.cargar_datos()
 riesgo = sensor1.analizar_riesgo()
 print(f'Nivel de riesgo: {riesgo}')
